@@ -1,12 +1,17 @@
 import CardDisplay from './components/CardDisplay';
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import AddPetCard from './components/AddPetCard';
 // import UpdatePetCard from './components/UpdatePetCard';
 
 function App() {
   const [petsList, setPetsList] = useState([]);
-    
+  const [showForm, setShowForm] = useState(false);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   useEffect(() => {
     const fetchPetsList = async () => {
       try {
@@ -14,24 +19,24 @@ function App() {
         setPetsList(response.data);
       } catch (err) {
         console.log('Error');
-        }
       }
-      
-      fetchPetsList();  
-      
-    }, []);
-    
+    }
+
+    fetchPetsList();
+
+  }, []);
+
   //// Delete pet by id 
   const handleDeletePet = async (id) => {
     console.log('Delete button clicked for id', id);
     await axios.delete(`http://localhost:8000/pets/${id}`)
-    .then(()=> {
-      setPetsList((petsList) => petsList.filter((pet) => pet.id !== id));
-    })
-    .catch((error) => {
-      console.log(error);
-    });    
-  }; 
+      .then(() => {
+        setPetsList((petsList) => petsList.filter((pet) => pet.id !== id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   //// PATCH request (I don't have PATCH in my backend...)
   // const handleUpdatePet = async (id, updatedData) => {
@@ -52,37 +57,44 @@ function App() {
       const petToUpdate = petsList.find(pet => pet.id === id);
       const updatedPet = { ...petToUpdate, description: updatedData };
 
-    await axios.put(`http://localhost:8000/pets/${id}`, updatedPet);
-    setPetsList(petsList.map(pet => pet.id === id ? updatedPet : pet 
-    ));
+      await axios.put(`http://localhost:8000/pets/${id}`, updatedPet);
+      setPetsList(petsList.map(pet => pet.id === id ? updatedPet : pet
+      ));
     } catch (error) {
       console.error('Error updating pet details:', error);
-    } 
+    }
   };
   /////
 
-  return(
+  return (
     <div>
       <h1>Pet Adoption Center</h1>
       <hr></hr>
       <div>
-        <h3>Form to Add New Pet</h3>
-        <AddPetCard />
+        <h3>Add New Pet</h3>
+        <button onClick={toggleForm}>
+          {showForm ? 'Hide Form' : 'Show Form'}
+        </button>
+        {showForm && (
+          <form>
+            {<AddPetCard />}
+          </form>
+        )}
       </div>
       <hr></hr>
-      <div> 
+      <div>
         <h2>Pets Available for Adoptions</h2>
-          {petsList.map((pet) => (
-            <CardDisplay
-              key={pet.id}
-              id={pet.id}
-              name={pet.name}
-              description={pet.description}
-              onDeletePet={handleDeletePet}
-              onUpdatePet={handleUpdatePet}
-              />
-            ))}
-      </div>  
+        {petsList.map((pet) => (
+          <CardDisplay
+            key={pet.id}
+            id={pet.id}
+            name={pet.name}
+            description={pet.description}
+            onDeletePet={handleDeletePet}
+            onUpdatePet={handleUpdatePet}
+          />
+        ))}
+      </div>
     </div>
   );
 };
