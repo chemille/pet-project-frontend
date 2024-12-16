@@ -101,7 +101,7 @@ const Home = () => {
       <div>
           <h1>Pet Adoption Center</h1>
           <h2>Welcome!</h2>
-          <img src={homedogs} alt="homedogs" id="homedogs"/>
+          <img src={homedogs} alt="homedogs" id="img"/>
           <button onClick={() =>
                navigate("/pets")}>See Available Pets</button>
       </div>
@@ -145,6 +145,18 @@ const Pets = () => {
       onUpdatePet={handleUpdatePet}
     />
   ))}
+  <hr></hr>
+        <div>
+        <h3>Add New Pet</h3>
+        <button onClick={toggleForm}>
+          {showForm ? 'Hide Form' : 'Show Form'}
+        </button>
+        {showForm && (
+          <div> 
+            {<AddPetCard />}
+          </div>
+        )}
+      </div>
   </div>
 )};
 
