@@ -109,3 +109,14 @@ nav a:hover {
 button:hover {
   background-color: #0056b3;
 } */
+
+img {
+  display: block;
+  margin: auto;
+  width: 50%;
+} 
+
+p {
+  padding: 30px;
+  margin: 20px;
+}
