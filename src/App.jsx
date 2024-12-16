@@ -1,13 +1,27 @@
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    useNavigate,
+    Outlet,
+} from "react-router-dom";
 import CardDisplay from './components/CardDisplay';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import AddPetCard from './components/AddPetCard';
-// import UpdatePetCard from './components/UpdatePetCard';
+import SearchBar from './components/SearchBar';
+
 
 function App() {
   const [petsList, setPetsList] = useState([]);
   const [showForm, setShowForm] = useState(false);
-
+  //// Create state for search query
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [searchItems, setSearchItems] = useState([]);
+  // const [filteredItems, setFilteredItems] = useState([]);
+  //
   const toggleForm = () => {
     setShowForm(!showForm);
   };
@@ -17,6 +31,7 @@ function App() {
       try {
         const response = await axios.get('http://127.0.0.1:8000/pets/');
         setPetsList(response.data);
+        // setSearchItems(response.data); // add this here?
       } catch (err) {
         console.log('Error');
       }
@@ -38,7 +53,7 @@ function App() {
       });
   };
 
-  //// PATCH request (I don't have PATCH in my backend...)
+  //// PATCH request (No PATCH in backend)
   // const handleUpdatePet = async (id, updatedData) => {
   //   try {
   //     await axios.patch(`http://localhost:8000/pets/${id}`, {description: updatedData});
@@ -64,13 +79,120 @@ function App() {
       console.error('Error updating pet details:', error);
     }
   };
-  /////
+
+  // ///// Filter items based on search term
+  // useEffect(() => {
+  //   const searchResult = petsList.filter(item =>
+  //     item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  //   setFilteredItems(searchResult);
+  // }, [searchTerm, petsList]);
+
+  // ////Function to handle search input change
+  // const handleSearchChange = (query) => {
+  //   setSearchTerm(query);
+  // };
+
+  // Home Page Component
+const Home = () => {
+  const navigate = useNavigate();
+
+  return (
+      <div>
+          <h1>Pet Adoption Center</h1>
+          <h2>Home Page</h2>
+          <button onClick={() =>
+               navigate("/pets")}>See Available Pets</button>
+      </div>
+  );
+};
+
+// About Page Component 
+const About = () => (
+  <div>
+      <h2>About Us</h2>
+      <nav>
+          <ul>
+              <li>
+                  <Link to="team">Our Team</Link>
+              </li>
+              <li>
+                  <Link to="company">Our Company</Link>
+              </li>
+          </ul>
+      </nav>
+      <Outlet />
+  </div>
+);
+
+// Available Pets Component
+const Pets = () => {
+  return (
+  <div>
+    <h2>Pets Available for Adoptions</h2>
+    <div>
+      <h3>Search Pets</h3>
+      <SearchBar />
+    </div>
+    {petsList.map((pet) => (
+    <CardDisplay
+      key={pet.id}
+      id={pet.id}
+      name={pet.name}
+      description={pet.description}
+      onDeletePet={handleDeletePet}
+      onUpdatePet={handleUpdatePet}
+    />
+  ))}
+  </div>
+)};
+
+const Team = () => {
+  return (
+    <div>
+    <h2>Our Team</h2>
+    <p>Lorem ipsum dolor sit amet. Ea nesciunt nulla hic repudiandae nesciunt sit quia optio qui earum galisum. Est velit aliquam non magnam assumenda est deserunt temporibus et possimus officiis. Ex natus asperiores eum impedit eveniet est optio fugit ea iusto distinctio ad sapiente fuga vel facilis aliquam qui cumque eveniet. Ut quas natus vel vitae omnis est architecto culpa sit sequi obcaecati sit omnis molestias. </p><p>Qui amet dignissimos et harum similique 33 culpa enim est odio reiciendis qui temporibus quos. Et libero recusandae non labore natus in perspiciatis eius aut fuga dolore ea quia vero! Et ducimus neque eos beatae vero id voluptas velit in ipsam ipsam? Ut atque quia et voluptatem voluptatum a quisquam debitis eos deleniti alias ab consequatur ratione aut voluptatibus natus. </p><p>Aut recusandae nesciunt sed placeat maiores vel repudiandae porro sit facere laboriosam sit autem laudantium. Sed rerum commodi qui galisum quia qui doloribus recusandae et dignissimos repellendus et provident molestiae rem delectus galisum?</p>
+    </div>
+  );
+};
+
+const Company = () => {
+  return (
+    <div>
+    <h2>Our Company</h2>
+    <p>Lorem ipsum dolor sit amet. Ea nesciunt nulla hic repudiandae nesciunt sit quia optio qui earum galisum. Est velit aliquam non magnam assumenda est deserunt temporibus et possimus officiis. Ex natus asperiores eum impedit eveniet est optio fugit ea iusto distinctio ad sapiente fuga vel facilis aliquam qui cumque eveniet. Ut quas natus vel vitae omnis est architecto culpa sit sequi obcaecati sit omnis molestias. </p><p>Qui amet dignissimos et harum similique 33 culpa enim est odio reiciendis qui temporibus quos. Et libero recusandae non labore natus in perspiciatis eius aut fuga dolore ea quia vero! Et ducimus neque eos beatae vero id voluptas velit in ipsam ipsam? Ut atque quia et voluptatem voluptatum a quisquam debitis eos deleniti alias ab consequatur ratione aut voluptatibus natus. </p><p>Aut recusandae nesciunt sed placeat maiores vel repudiandae porro sit facere laboriosam sit autem laudantium. Sed rerum commodi qui galisum quia qui doloribus recusandae et dignissimos repellendus et provident molestiae rem delectus galisum?</p>
+    </div>
+  );
+};
 
   return (
     <div>
-      <h1>Pet Adoption Center</h1>
-      <hr></hr>
-      <div>
+        <Router>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About</Link>
+                    </li>
+                    <li>
+                        <Link to="/pets">Pets</Link>
+                    </li>
+                </ul>
+            </nav>
+            {/*Implementing Routes for respective Path */}
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />}>
+                    <Route path="team" element={<Team />} />
+                    <Route path="company" element={<Company/>} />
+                </Route>
+                <Route path="/pets" element={<Pets />} />
+            </Routes>
+        </Router>
+      {/* <hr></hr>
+        <div>
         <h3>Add New Pet</h3>
         <button onClick={toggleForm}>
           {showForm ? 'Hide Form' : 'Show Form'}
@@ -80,21 +202,8 @@ function App() {
             {<AddPetCard />}
           </form>
         )}
-      </div>
+      </div> */}
       <hr></hr>
-      <div>
-        <h2>Pets Available for Adoptions</h2>
-        {petsList.map((pet) => (
-          <CardDisplay
-            key={pet.id}
-            id={pet.id}
-            name={pet.name}
-            description={pet.description}
-            onDeletePet={handleDeletePet}
-            onUpdatePet={handleUpdatePet}
-          />
-        ))}
-      </div>
     </div>
   );
 };
