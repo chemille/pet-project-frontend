@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import AddPetCard from './components/AddPetCard';
 import SearchBar from './components/SearchBar';
-
+import homedogs from './assets/homedogs.jpg';
 
 function App() {
   const [petsList, setPetsList] = useState([]);
@@ -100,7 +100,8 @@ const Home = () => {
   return (
       <div>
           <h1>Pet Adoption Center</h1>
-          <h2>Home Page</h2>
+          <h2>Welcome!</h2>
+          <img src={homedogs} alt="homedogs" />
           <button onClick={() =>
                navigate("/pets")}>See Available Pets</button>
       </div>
