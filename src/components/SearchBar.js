@@ -9,6 +9,7 @@ function SearchBar({searchTerm, onSearchChange}) {
         value={searchTerm} 
         onChange={e => onSearchChange(e.target.value)} 
       />
+      <button>Search</button>
     </div>
   );
 }
