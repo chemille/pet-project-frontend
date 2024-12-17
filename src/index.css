@@ -114,9 +114,17 @@ img {
   display: block;
   margin: auto;
   width: 50%;
+  box-sizing: border-box;
 } 
 
 p {
   padding: 25px;
   margin: 15px;
+}
+
+.btn-see-available-pets {
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  padding: 5px;
 }

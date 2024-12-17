@@ -12,7 +12,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import AddPetCard from './components/AddPetCard';
 import SearchBar from './components/SearchBar';
-import homedogs from './assets/homedogs.jpg';
+// import homedogs from './assets/homedogs.jpg';
+import SlideShow from './components/SlideShow';
+import slideShowData from './data/slideShowData.json';
 
 function App() {
   const [petsList, setPetsList] = useState([]);
@@ -101,8 +103,11 @@ const Home = () => {
       <div>
           <h1>Pet Adoption Center</h1>
           <h2>Welcome!</h2>
-          <img src={homedogs} alt="homedogs" id="img"/>
-          <button onClick={() =>
+          <div> 
+            <SlideShow slides={slideShowData} />
+          </div>
+          {/* <img src={homedogs} alt="homedogs" id="img"/> */}
+          <button className="btn-see-available-pets" onClick={() =>
                navigate("/pets")}>See Available Pets</button>
       </div>
   );
@@ -178,6 +183,26 @@ const Company = () => {
   );
 };
 
+const Volunteer = () => {
+  return (
+    <div> 
+      <h2>Volunteer Page</h2>
+      <h3>On-site Volunteering</h3>
+      <p>Are you interested in volunteering on-site? 
+        <ul>
+          <li>VOLUNTEER FORM</li>
+        </ul>
+      </p>
+      <h3>Foster Care</h3>
+      <p>If you would like a foster a pet, please fill out this application form.
+        <ul>
+          <li>APPLICATION FORM TO FOSTER</li>
+        </ul>
+      </p>
+    </div>
+  )
+}
+
   return (
     <div>
         <Router>
@@ -192,6 +217,9 @@ const Company = () => {
                     <li>
                         <Link to="/pets">Pets</Link>
                     </li>
+                    <li>
+                        <Link to="/volunteer">Volunteer</Link>
+                    </li>
                 </ul>
             </nav>
             {/*Implementing Routes for respective Path */}
@@ -202,21 +230,9 @@ const Company = () => {
                     <Route path="company" element={<Company/>} />
                 </Route>
                 <Route path="/pets" element={<Pets />} />
+                <Route path="/volunteer" element={<Volunteer />} />
             </Routes>
         </Router>
-      {/* <hr></hr>
-        <div>
-        <h3>Add New Pet</h3>
-        <button onClick={toggleForm}>
-          {showForm ? 'Hide Form' : 'Show Form'}
-        </button>
-        {showForm && (
-          <form>
-            {<AddPetCard />}
-          </form>
-        )}
-      </div> */}
-      <hr></hr>
     </div>
   );
 };
