@@ -26,7 +26,10 @@ const SlideShow = ({slides}) => {
             <BsCaretRightSquareFill className="arrow arrow-right" onClick={nextSlide} />
             <span className="indicators" >
                 {slides.map((_, idx) => {
-                    return <button key={idx} onClick={null} className={slide === idx ? "indicator" : "indicator indicator-inactive"} ></button>
+                    return <button 
+                        key={idx} 
+                        onClick={() => setSlide(idx)} 
+                        className={slide === idx ? "indicator" : "indicator indicator-inactive"} ></button>
                 })}
             </span>
         </div>
