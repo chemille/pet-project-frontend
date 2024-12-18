@@ -103,7 +103,7 @@ const Home = () => {
       <div>
           <h1>Pet Adoption Center</h1>
           <h2>Welcome!</h2>
-          <div> 
+          <div className="slides-home"> 
             <SlideShow slides={slideShowData} />
           </div>
           {/* <img src={homedogs} alt="homedogs" id="img"/> */}
