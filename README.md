@@ -22,7 +22,7 @@ Install the required dependencies using npm.
 
 Start the development server
 
-#### `npm run eject`
+#### `npm start`
 
 Open your browser and visit http://localhost:3000
 
