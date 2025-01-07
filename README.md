@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Pet Project (frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+According to the American Society for the Prevention of Cruelty to Animals (ASPCA), an estimated 6.3 million companion animals (primarily dogs and cats) are admitted to animal shelters throughout the U.S. every year. Approximately 920,000 shelter animals are euthanized yearly.
+
+This pet adoptions web application (ongoing project) was created with the thought of helping shelter animals get additional love and care from volunteers and increase the number of successful pet adoptions.
 
 ## Available Scripts
 
-In the project directory, you can run:
+To run the pet-project-frontend locally, follow these steps:
 
-### `npm start`
+Clone this repository to your local machine.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### `https://github.com/chemille/pet-project-frontend.git`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Navigate to the project directory.
 
-### `npm test`
+#### `cd frontend`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install the required dependencies using npm.
 
-### `npm run build`
+#### `npm install`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Start the development server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### `npm run eject`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open your browser and visit http://localhost:3000
 
-### `npm run eject`
+## Technologies Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+React: A popular JavaScript library for building user interfaces.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+JavaScript: The programming language used to add interactivity and functionality to the frontend.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Axios: A library for making HTTP requests to the backend API.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+React Router: A routing library for managing navigation within the application.
 
-## Learn More
+HTML: The standard markup language for creating web pages.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+CSS: The styling language used to design the visual presentation of the application.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Features
 
-### Code Splitting
+Interactive Interface: User-friendly interface to navigate and interact with the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Future Enhancements to be Implemented
 
-### Analyzing the Bundle Size
+Metrics: Add metrics to views stats and graphs of pet adoptions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+User Authentication: Users will be able to create an account, log in, and securely authenticate their identity.
 
-### Making a Progressive Web App
+## Pet Project (backend)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To access the backend, go to this repository:
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://github.com/chemille/pet-project-django-react
