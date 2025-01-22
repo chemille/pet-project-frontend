@@ -1,25 +1,37 @@
-
 import { useForm } from "react-hook-form";
-// useForm hook is more scalable 
 
 const VolunteerForm = () => {
     //Register function is going to help us connect inputs and html elements for them to be able to work with the form. 
     //So we destructure the form variable and use the register function on the inputs.
     //We register with the inputs to work with the react hook form.
     //const form = useForm();
-    const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm();
+    const { 
+        register, 
+        handleSubmit,
+        setError, 
+        formState: {errors, isSubmitting} 
+    } = useForm();
     //handleSubmit from react hook forms will handle the default behavior of the form as well as handle the validating inputs for us.
     //To display errors to users, you can use the formState from the useForm hook. 
-    //formState is an object you can destructure and get access to the errors
     
+    //formState is an object you can destructure and get access to the errors
     //Another property you can access in the formState besides errors is isSubmitting.
     //isSubmitting is a boolean that will be true when the form is submitting.
     //You can make your submit button unaccessible while the form is submitting.
 
-    //Convert onSubmit function into asynchronous function
+    //React hook forms has another function called setError.
+    //setError allows us to programmatically set an error for the form.
+    //For instance, if a user inputs an email that is already taken, they will get a message.
     const onSubmit = async (data) => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        console.log(data);
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Waits 1 second 
+            throw new Error();
+            console.log(data);
+        } catch (error) {
+            setError("email", {
+                message: "This email is already taken",
+            });
+        }
     }
 
     //{...register("email")} can have an optional second parameter for validation. That way you can't submit empty fields
