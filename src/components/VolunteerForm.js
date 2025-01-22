@@ -1,40 +1,31 @@
 import { useForm } from "react-hook-form";
+import { BsEmojiGrimaceFill, BsMailbox } from "react-icons/bs";
 
 const VolunteerForm = () => {
-    //Register function is going to help us connect inputs and html elements for them to be able to work with the form. 
-    //So we destructure the form variable and use the register function on the inputs.
-    //We register with the inputs to work with the react hook form.
-    //const form = useForm();
     const { 
         register, 
         handleSubmit,
         setError, 
         formState: {errors, isSubmitting} 
-    } = useForm();
-    //handleSubmit from react hook forms will handle the default behavior of the form as well as handle the validating inputs for us.
-    //To display errors to users, you can use the formState from the useForm hook. 
+    } = useForm({
+        defaultValues: {
+            email: "youremail@gmail.com"
+        }
+    }); //To set default values for your form fields, you can add a defaultValues object in useForm
+    //You don't have to set a default value for every field, just the ones you want.
     
-    //formState is an object you can destructure and get access to the errors
-    //Another property you can access in the formState besides errors is isSubmitting.
-    //isSubmitting is a boolean that will be true when the form is submitting.
-    //You can make your submit button unaccessible while the form is submitting.
-
-    //React hook forms has another function called setError.
     const onSubmit = async (data) => {
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000)); // Waits 1 second 
+            await new Promise((resolve) => setTimeout(resolve, 1000));  
             throw new Error();
             console.log(data);
         } catch (error) {
-            //setError("root") is for the error to belong to the whole form rather than one form field such as "email".
-            //Then, scroll down to JSX and add {errors.root && <div className="text-red-500">{errors.root.message}</div>
             setError("root", {
                 message: "This email is already taken",
             });
         }
     }
 
-    //{...register("email")} can have an optional second parameter for validation. That way you can't submit empty fields
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <input 
