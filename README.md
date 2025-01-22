@@ -36,6 +36,10 @@ Axios: A library for making HTTP requests to the backend API.
 
 React Router: A routing library for managing navigation within the application.
 
+React Bootstrap Icons: A pre-built icons library for easy integration into your React UI.  
+
+React Hook Form: A library for building forms in React applications that simplifies valdiation.
+
 HTML: The standard markup language for creating web pages.
 
 CSS: The styling language used to design the visual presentation of the application.
