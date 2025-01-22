@@ -20,15 +20,15 @@ const VolunteerForm = () => {
     //You can make your submit button unaccessible while the form is submitting.
 
     //React hook forms has another function called setError.
-    //setError allows us to programmatically set an error for the form.
-    //For instance, if a user inputs an email that is already taken, they will get a message.
     const onSubmit = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000)); // Waits 1 second 
             throw new Error();
             console.log(data);
         } catch (error) {
-            setError("email", {
+            //setError("root") is for the error to belong to the whole form rather than one form field such as "email".
+            //Then, scroll down to JSX and add {errors.root && <div className="text-red-500">{errors.root.message}</div>
+            setError("root", {
                 message: "This email is already taken",
             });
         }
@@ -54,6 +54,7 @@ const VolunteerForm = () => {
             <input {...register("lastName", {required: "Last name is required", minLength: 2,})} type="lastName" placeholder="Last Name" />
             {errors.lastName && (<div className="text-red-500">{errors.lastName.message}</div>)}
             <button disabled={isSubmitting} type="submit">{isSubmitting ? "Loading..." : "Submit Form"}</button>
+            {errors.root && (<div className="text-red-500">{errors.root.message}</div>)}
         </form>
     );
 };
