@@ -123,6 +123,7 @@ img {
   margin: auto;
   width: 50%;
   box-sizing: border-box;
+  border-radius: 0.5rem;
 } 
 
 p {
@@ -135,4 +136,16 @@ p {
   margin: auto;
   margin-top: 30px;
   padding: 5px;
+}
+
+.text-red-500 {
+  color: red;
+}
+
+input[type=text] {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin: 5px;
+  /* box-shadow: 0 0 10px 1px; */
 }

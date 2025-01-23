@@ -12,9 +12,10 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import AddPetCard from './components/AddPetCard';
 import SearchBar from './components/SearchBar';
-// import homedogs from './assets/homedogs.jpg';
+import homedogs from './assets/homedogs.jpg';
 import SlideShow from './components/SlideShow';
 import slideShowData from './data/slideShowData.json';
+import VolunteerForm from './components/VolunteerForm';
 
 function App() {
   const [petsList, setPetsList] = useState([]);
@@ -106,7 +107,6 @@ const Home = () => {
           <div className="slides-home"> 
             <SlideShow slides={slideShowData} />
           </div>
-          {/* <img src={homedogs} alt="homedogs" id="img"/> */}
           <button className="btn-see-available-pets" onClick={() =>
                navigate("/pets")}>See Available Pets</button>
       </div>
@@ -117,6 +117,7 @@ const Home = () => {
 const About = () => (
   <div>
       <h2>About Us</h2>
+      <img src={homedogs} alt="homedogs" id="img"/>
       <nav>
           <ul>
               <li>
@@ -187,18 +188,11 @@ const Volunteer = () => {
   return (
     <div> 
       <h2>Volunteer Page</h2>
-      <h3>On-site Volunteering</h3>
-      <p>Are you interested in volunteering on-site? 
-        <ul>
-          <li>VOLUNTEER FORM</li>
-        </ul>
-      </p>
-      <h3>Foster Care</h3>
-      <p>If you would like a foster a pet, please fill out this application form.
-        <ul>
-          <li>APPLICATION FORM TO FOSTER</li>
-        </ul>
-      </p>
+      <h3>Are you interested in volunteering?</h3>
+      <p>Please fill out this volunteer form</p>
+      <div>
+        <VolunteerForm />
+      </div>
     </div>
   )
 }
